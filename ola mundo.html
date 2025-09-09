@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego del Ahorcado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f2f2f2;
+      padding: 30px;
+    }
+    #palabra {
+      font-size: 30px;
+      letter-spacing: 10px;
+      margin: 20px 0;
+    }
+    #errores {
+      color: red;
+      font-weight: bold;
+    }
+    #input-letra {
+      padding: 10px;
+      font-size: 18px;
+      width: 40px;
+      text-align: center;
+    }
+    #letras-usadas {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎲 Ahorcado</h1>
+  <p>¡Adivina la palabra letra por letra!</p>
+
+  <div id="palabra">_ _ _ _ _</div>
+
+  <input type="text" id="input-letra" maxlength="1">
+  <button onclick="adivinarLetra()">Probar letra</button>
+
+  <div id="errores">Errores: 0 / 6</div>
+  <div id="letras-usadas">Letras usadas: </div>
+
+  <script>
+    const palabras = ["gato", "luz", "flor", "cielo", "robot", "piano", "fuego"];
+    const palabra = palabras[Math.floor(Math.random() * palabras.length)].toUpperCase();
+    let intentos = 0;
+    let letrasUsadas = [];
+    let palabraAdivinada = Array(palabra.length).fill("_");
+
+    document.getElementById("palabra").textContent = palabraAdivinada.join(" ");
+
+    function adivinarLetra() {
+      const input = document.getElementById("input-letra");
+      const letra = input.value.toUpperCase();
+
+      if (!letra || letrasUsadas.includes(letra) || !letra.match(/[A-ZÑ]/)) {
+        input.value = "";
+        return;
+      }
+
+      letrasUsadas.push(letra);
+      document.getElementById("letras-usadas").textContent = "Letras usadas: " + letrasUsadas.join(", ");
+
+      if (palabra.includes(letra)) {
+        for (let i = 0; i < palabra.length; i++) {
+          if (palabra[i] === letra) {
+            palabraAdivinada[i] = letra;
+          }
+        }
+        document.getElementById("palabra").textContent = palabraAdivinada.join(" ");
+        if (!palabraAdivinada.includes("_")) {
+          alert("🎉 ¡Ganaste! La palabra era: " + palabra);
+          location.reload();
+        }
+      } else {
+        intentos++;
+        document.getElementById("errores").textContent = `Errores: ${intentos} / 6`;
+        if (intentos >= 6) {
+          alert("😢 Perdiste. La palabra era: " + palabra);
+          location.reload();
+        }
+      }
+
+      input.value = "";
+      input.focus();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+		body {
+			background-color: aquamarine;
+		}
+		.batata {
+			color: blue;
+			text-align: center;
+			font-size: 80px;
+		}
+		.milho {
+			color: hotpink;
+			text-align: center;
+		}
+		.casameme {
+			color: white;
+			text-align: center;
+		}
+		.center {
+			display: flex;
+			justify-content: center;
+		}
+		.textoxd {
+			color: white;
+			text-align: center;
+		}
+		.img {
+			width: 200px;	
+			border-radius: 60px;		
+		}
+		.img1 {
+			width: 300px;
+			border-radius: 60px;
+			
+		}
+		.img2{
+			width: 400px;
+			border-radius: 60px;
+			
+		}
+		.contenedor {
+			display: flex;
+			flex-direction: column;
+			/*justify-content: center;*/
+			margin-left: 100px;
+			text-align: center;
+		}
+		.btn {
+			font-size: 100px;
+			border-radius: 15px;
+		}

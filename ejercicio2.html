@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Exercicio 2</title>
+	<style>
+		body {
+			background-color: rgba(255, 230, 196, 0.8);
+		}
+		.div {
+
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			background-color: rgba(75, 58, 38, 0.315);
+			border-radius: 15px;
+			float: center;
+			width: 505px;      
+            height: 8px;   
+			box-sizing: border-box; 
+			justify-content: center; 
+			height: 100vh; 
+			margin-left: 700px;
+			
+
+		}
+		.btn {
+			text-align: 40px;
+			width: 85px;
+			font-size: 15px;
+		}
+		.in {
+			width: 170px;
+			height: 0 auto;
+			font-size: 15px;
+		}
+		.xd1 {
+			font-size: 40px;
+			text-align: center;
+
+		}
+		p {
+			font-size: 20px;
+		}
+		img {
+			width: 400px;
+		}
+	</style>
+
+</head>
+<body>
+	<div class="div">
+	<h1 class="xd1">Bem vindo ao Jogo do Numero Secreto</h1>
+	<p class="p">Inspire seu palpite abaixo</p>
+	<input id="ipt" type="number" name="Palpite" class="in">
+	<h2></h2>
+	<button onclick="jogo()" class="btn">Chute</button>
+	<p id="msg1"></p>
+	<h1></h1>
+	<img class="img" id="img1" src="">
+	<div id="img2"></div>
+	
+    </div>
+	<script>
+        let numSec = Math.floor(Math.random() * 10) + 1;
+        console.log(numSec);
+
+        let palpite;
+        let tentativa = 0;
+        let maxTe = 5;
+
+
+    function jogo() {    
+
+        	palpite = document.getElementById("ipt").value;
+
+        	tentativa++;
+
+        if (tentativa <= maxTe) {
+
+        	if(palpite == numSec) {
+        		document.getElementById("msg1").innerText = "Acertou com " + tentativa + " tentativa(s).";
+        		document.getElementById("img1").src ="https://i1.wp.com/www.noobabble.com/wp-content/uploads/2015/02/Victory.gif";
+        	} else if(palpite > numSec) {
+        		document.getElementById("msg1").innerText = "O numero secreto e MENOR";
+				
+                
+        	} else if (tentativa == maxTe) {
+                document.getElementById("msg1").innerText = "GAME OVER!!!!!";
+				document.getElementById("img2").innerHTML = "<img src ='https://i.makeagif.com/media/10-12-2020/2Bgw3J.gif'>";
+        	} else {
+        		document.getElementById("msg1").innerText = "O numero secreto e MAIOR!!!";
+				
+        	}
+        }
+	}    
+
+
+
+ 
+	</script>
+
+
+</body>
+</html>

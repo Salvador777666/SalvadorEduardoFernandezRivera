@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Exemplo 7</title>
+	<style>
+		body {
+			background-color: seagreen;
+		}
+		buttom {
+			font-size: 150px;
+		}
+
+
+	</style>
+</head>
+<body>
+	<button onclick="maiorMenor()">Maior ou menor que 10</button>
+	<button onclick="parImpar()">Par ou Impar</button>
+	<button onclick="desc()">Calcular juros</button>
+	<script>
+		let a1;
+
+		function maiorMenor() {
+			a1 = prompt("Digite seu numero aqui: ");
+
+			if(a1 >= 10) {
+				alert("Este numero e igual au maior do que 10");
+
+			} else {
+				alert("Este numero e menor do que 10");
+			}
+		}
+		function parImpar() {
+			a1 = prompt("Digite seu numero: ");
+
+			if (a1 % 2 == 0) {
+				alert("Este numero e par");
+
+			} else {
+				alert("Este numero e Impar");
+			}
+		}
+		function desc() {
+			a1 = Number(prompt("Digite seu numero"));
+
+			if (!isNaN(a1) && a1 > 0) {
+				let desconto = 15;
+				let valorDesc = a1 * (desconto / 100);
+				console.log(valorDesc);
+				let valorFinal = a1 - valorDesc;
+				alert("O valor total com 15% de dosconto e: " + valorFinal + "R$");
+
+			} else {
+				alert("Digite um numero valido");
+			}
+
+
+
+		}
+
+		
+
+
+	</script>
+
+</body>
+</html>

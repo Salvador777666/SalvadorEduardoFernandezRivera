@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego: Adivina el Número</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f0f8ff;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    #mensaje {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .correcto {
+      color: green;
+    }
+
+    .incorrecto {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Adivina el Número</h1>
+  <p>Estoy pensando en un número del 1 al 100. ¿Puedes adivinar cuál es?</p>
+
+  <input type="number" id="adivinanza" placeholder="Escribe tu número" min="1" max="100">
+  <button onclick="verificar()">Adivinar</button>
+  <button onclick="reiniciar()">Reiniciar</button>
+
+  <p id="mensaje"></p>
+
+  <script>
+    let numeroSecreto = Math.floor(Math.random() * 10) + 1;
+    let intentos = 0;
+
+    function verificar() {
+      const entrada = document.getElementById('adivinanza');
+      const mensaje = document.getElementById('mensaje');
+      const valor = Number(entrada.value);
+      intentos++;
+
+      if (isNaN(valor) || valor < 1 || valor > 10) {
+        mensaje.textContent = 'Por favor, introduce un número entre 1 y 10.';
+        mensaje.className = 'incorrecto';
+        return;
+      }
+
+      if (valor === numeroSecreto) {
+        mensaje.textContent = `🎉 ¡Correcto! El número era ${numeroSecreto}. Te tomó ${intentos} intento(s).`;
+        mensaje.className = 'correcto';
+      } else if (valor < numeroSecreto) {
+        mensaje.textContent = '📉 Demasiado bajo. Intenta nuevamente.';
+        mensaje.className = 'incorrecto';
+      } else {
+        mensaje.textContent = '📈 Demasiado alto. Intenta nuevamente.';
+        mensaje.className = 'incorrecto';
+      }
+
+      entrada.value = '';
+      entrada.focus();
+    }
+
+    function reiniciar() {
+      numeroSecreto = Math.floor(Math.random() * 10) + 1;
+      intentos = 0;
+      document.getElementById('mensaje').textContent = '';
+      document.getElementById('adivinanza').value = '';
+      document.getElementById('adivinanza').focus();
+    }
+  </script>
+
+</body>
+</html>
